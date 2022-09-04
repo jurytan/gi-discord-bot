@@ -1,0 +1,29 @@
+{
+  "name": "gi-discord-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jurytan/gi-discord-bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jurytan/gi-discord-bot/issues"
+  },
+  "homepage": "https://github.com/jurytan/gi-discord-bot#readme",
+  "dependencies": {
+    "discord.js": "^14.3.0"
+  },
+  "engines": {
+    "node": ">=16.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.23.0"
+  }
+}
