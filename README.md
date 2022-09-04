@@ -16,7 +16,11 @@ Not much! Just making a bot cause I was getting tired of manually doing stuff. A
 [![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)
 
 ### Local
-`node index.js`
+To start: 
+`npm start` or `node index.js`
+
+To deploy commands:
+`npm run deploy` or `node deploy-commands.js`
 
 ### Docker
 More info coming soon
