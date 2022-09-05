@@ -9,9 +9,12 @@ const {
 const { mongodbUsername, mongodbPassword, mongodbServer } = require('../settings');
 const Keyv = require('keyv');
 const KeyvMongo = require('@keyv/mongo');
-const config = new Keyv({
+const role_mention = new Keyv({
     store: new KeyvMongo(`mongodb+srv://${mongodbUsername}:${mongodbPassword}@${mongodbServer}/katheryne?retryWrites=true&w=majority`),
-    namespace: 'config'});
+    namespace: 'role_mention'});
+const enable_mention = new Keyv({
+    store: new KeyvMongo(`mongodb+srv://${mongodbUsername}:${mongodbPassword}@${mongodbServer}/katheryne?retryWrites=true&w=majority`),
+    namespace: 'enable_mention'});
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -35,9 +38,12 @@ module.exports = {
         let url = "https://genshin.hoyoverse.com/en/gift?code=" + interaction.options.get('code').value;
         let userId = interaction.user.id;
         let username = interaction.user.username;
-        let roleId = await config.get(interaction.guildId);
+        let enabled = await enable_mention.has(interaction.guildId) ? await enable_mention.get(interaction.guildId) : true;
+        let hasRole = await role_mention.has(interaction.guildId);
+        let roleId = await role_mention.get(interaction.guildId);
+        // console.log(`enabled: ${enabled}, hasRole: ${hasRole}, roleId: ${roleId}`);
 
-        const message = (roleId ? `${roleMention(roleId)}:` : '') 
+        const message = (enabled && hasRole ? `${roleMention(roleId)}: ` : '') 
             + `A new Genshin Impact code is available for you! Thanks to ${userMention(userId)} for the code!`;
 
         const embedResponse = new EmbedBuilder()

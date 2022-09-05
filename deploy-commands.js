@@ -17,5 +17,10 @@ for (const file of commandFiles) {
 const rest = new REST({ version: '10' }).setToken(token);
 
 rest.put(Routes.applicationCommands(clientId), { body: commands })
-    .then(() => console.log('Successfully registered application commands.'))
+    .then(() => {
+        console.log('Successfully registered application commands.');
+        // comment out this line if your commands aren't deploying properly
+        // doing this only because of the mongodb atlas bug
+        process.exit(0);
+    })
     .catch(console.error);

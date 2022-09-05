@@ -13,7 +13,7 @@ const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
-    console.debug(file);
+    // console.debug(file);
     const filepath = path.join(commandsPath, file);
 	const command = require(filepath);
 	client.commands.set(command.data.name , command);
@@ -25,8 +25,7 @@ client.once('ready', () => console.log('---[jurytan] Genshin Impact Discord bot 
 
 client.on('interactionCreate', async (interaction) => {
 	if (!interaction.isChatInputCommand()) return;
-    console.debug(interaction);
-    console.debug('=========================');
+    // console.debug(interaction);
 
 	const command = interaction.client.commands.get(interaction.commandName);
 

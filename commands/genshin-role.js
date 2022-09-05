@@ -5,9 +5,12 @@ const {
 const { mongodbUsername, mongodbPassword, mongodbServer } = require('../settings');
 const Keyv = require('keyv');
 const KeyvMongo = require('@keyv/mongo');
-const config = new Keyv({
+const role_mention = new Keyv({
     store: new KeyvMongo(`mongodb+srv://${mongodbUsername}:${mongodbPassword}@${mongodbServer}/katheryne?retryWrites=true&w=majority`),
-    namespace: 'config'});
+    namespace: 'role_mention'});
+const enable_mention = new Keyv({
+    store: new KeyvMongo(`mongodb+srv://${mongodbUsername}:${mongodbPassword}@${mongodbServer}/katheryne?retryWrites=true&w=majority`),
+    namespace: 'enable_mention'});
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -42,11 +45,15 @@ module.exports = {
 
         if (interaction.options.getSubcommand() === 'set'){
             let role = interaction.options.getRole('role');
-            config.set(interaction.guildId, role.id);
+            await role_mention.set(interaction.guildId, role.id);
             await interaction.reply({ content: `${role} was set`, ephemeral: true });
         } else if (interaction.options.getSubcommand() === 'view'){
-            let role = await config.get(interaction.guildId);
+            let role = await role_mention.get(interaction.guildId);
             let msg = role ? `${roleMention(role)} is currently set.` : 'No role has been set. Please use `\genshin-role set` to set a role!';
+            await interaction.reply({ content: msg, ephemeral: true });
+        } else if (interaction.options.getSubcommand() === 'enable'){
+            await enable_mention.set(interaction.guildId, interaction.options.getBoolean('value'));
+            let msg = `Mentioning role is currently set to ${interaction.options.getBoolean('value')}.`;
             await interaction.reply({ content: msg, ephemeral: true });
         }
 	},

@@ -33,5 +33,6 @@ More info coming soon
 
 ## FAQ
 
-**Q: Why doesn't `genshin-role set` or `genshin-role view` work for me?**
+**Q: Why doesn't any of the `genshin-role` commands work for me?**
 **A:** This is because you do not have a role with `Administrator` or `Manage Server` set. Please assign a role with one of the previously listed permissions to the affected user. Due to a limitation, even owners need to explicitly create a role and add this to themselves. 
+
