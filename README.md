@@ -20,7 +20,7 @@ To start:
 `npm start` or `node index.js`
 
 To deploy commands:
-`npm run deploy` or `node deploy-commands.js`
+`npm run deploy-commands` or `node deploy-commands.js`
 
 ### Docker
 More info coming soon
