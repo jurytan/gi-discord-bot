@@ -4,11 +4,14 @@ const {
     ButtonStyle,
     EmbedBuilder,
     SlashCommandBuilder,
+    userMention,
     roleMention } = require('discord.js');
-
-// add your role id for Genshin Impact codes here
-// let roleId = '844710239571410954'; // The Domain of Jury
-let roleId = '1016205852849483836';  // Jurys Bot Land
+const { mongodbUsername, mongodbPassword, mongodbServer } = require('../settings');
+const Keyv = require('keyv');
+const KeyvMongo = require('@keyv/mongo');
+const config = new Keyv({
+    store: new KeyvMongo(`mongodb+srv://${mongodbUsername}:${mongodbPassword}@${mongodbServer}/katheryne?retryWrites=true&w=majority`),
+    namespace: 'config'});
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -28,14 +31,14 @@ module.exports = {
                 .setRequired(false)),
 	async execute(interaction) {
         console.debug('Received the code command!');
-        console.debug('code', interaction.options.get('code'));
-        console.debug('message', interaction.options.get('message'));
-        console.debug('amount', interaction.options.get('amount'));
-        console.debug('username', interaction)
 
         let url = "https://genshin.hoyoverse.com/en/gift?code=" + interaction.options.get('code').value;
         let userId = interaction.user.id;
         let username = interaction.user.username;
+        let roleId = await config.get(interaction.guildId);
+
+        const message = (roleId ? `${roleMention(roleId)}:` : '') 
+            + `A new Genshin Impact code is available for you! Thanks to ${userMention(userId)} for the code!`;
 
         const embedResponse = new EmbedBuilder()
             .setColor(0x0099FF)
@@ -55,6 +58,6 @@ module.exports = {
                     .setStyle(ButtonStyle.Link),
             );
 
-		await interaction.reply({ content: `${roleMention(roleId)}`, embeds: [embedResponse], components: [button] });
+		await interaction.reply({ content: message, embeds: [embedResponse], components: [button] });
 	},
 };

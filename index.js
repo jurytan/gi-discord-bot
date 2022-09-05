@@ -1,3 +1,4 @@
+console.log('Loading...');
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
@@ -5,6 +6,7 @@ const { token } = require('./settings');
 
 const client = new Client({ intents: [GatewayIntentBits.MessageContent]});
 const guilds = client.guilds.cache.map(guild => guild.id);
+
 
 client.commands = new Collection();
 const commandsPath = path.join(__dirname, 'commands');
