@@ -18,8 +18,6 @@ Not much! Just making a bot cause I was getting tired of manually doing stuff. A
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/jurytan/gi-discord-bot)
 
-**NOTE:** For Heroku, it's suggested you use this buildpack: https://elements.heroku.com/buildpacks/synicalsyntax/discord.js-heroku#buildpack-instructions
-
 
 [![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)
 
