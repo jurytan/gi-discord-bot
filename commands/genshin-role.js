@@ -3,8 +3,8 @@ const {
     roleMention, 
     PermissionFlagsBits} = require('discord.js');
 // const { mongodbUsername, mongodbPassword, mongodbServer } = require('../settings');
-const mongodbUsername = process.env.MONGODB_USERNAME;
-const mongodbPassword = process.env.MONGODB_PASSWORD;
+const mongodbUsername = encodeURIComponent(process.env.MONGODB_USERNAME);
+const mongodbPassword = encodeURIComponent(process.env.MONGODB_PASSWORD);
 const mongodbServer = process.env.MONGODB_SERVER;
 
 const Keyv = require('keyv');
