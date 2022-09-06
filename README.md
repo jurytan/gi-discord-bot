@@ -19,7 +19,7 @@ Not much! Just making a bot cause I was getting tired of manually doing stuff. A
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/jurytan/gi-discord-bot)
 
 
-[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)
+[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run?git_repo=github.com/jurytan/katheryne-bot)
 
 ### Local
 To start: 
