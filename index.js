@@ -1,8 +1,10 @@
-console.log('Loading...');
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
-const { token } = require('./settings');
+require('dotenv').config();
+// const { token } = require('./settings');
+
+const token = process.env.TOKEN;
 
 const client = new Client({ intents: [GatewayIntentBits.MessageContent]});
 const guilds = client.guilds.cache.map(guild => guild.id);

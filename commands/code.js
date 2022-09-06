@@ -6,7 +6,11 @@ const {
     SlashCommandBuilder,
     userMention,
     roleMention } = require('discord.js');
-const { mongodbUsername, mongodbPassword, mongodbServer } = require('../settings');
+// const { mongodbUsername, mongodbPassword, mongodbServer } = require('../settings');
+const mongodbUsername = process.env.MONGODB_USERNAME;
+const mongodbPassword = process.env.MONGODB_PASSWORD;
+const mongodbServer = process.env.MONGODB_SERVER;
+
 const Keyv = require('keyv');
 const KeyvMongo = require('@keyv/mongo');
 const role_mention = new Keyv({
