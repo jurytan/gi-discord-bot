@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { 
     ActionRowBuilder,
     ButtonBuilder,
@@ -6,19 +7,23 @@ const {
     SlashCommandBuilder,
     userMention,
     roleMention } = require('discord.js');
+
 // const { mongodbUsername, mongodbPassword, mongodbServer } = require('../settings');
 const mongodbUsername = encodeURIComponent(process.env.MONGODB_USERNAME);
 const mongodbPassword = encodeURIComponent(process.env.MONGODB_PASSWORD);
 const mongodbServer = process.env.MONGODB_SERVER;
 
+const mongoUrl = `mongodb+srv://${mongodbUsername}:${mongodbPassword}@${mongodbServer}/katheryne?retryWrites=true&w=majority`;
+// const mongoUrl = `mongodb://${mongodbUsername}:${mongodbPassword}@main-shard-00-00-${mongodbServer}:27017,main-shard-00-01-${mongodbServer}:27017,main-shard-00-02-${mongodbServer}:27017/katheryne?ssl=true&replicaSet=Main-shard-0&authSource=admin&retryWrites=true`
+
 const Keyv = require('keyv');
 const KeyvMongo = require('@keyv/mongo');
 const role_mention = new Keyv({
-    store: new KeyvMongo(`mongodb+srv://${mongodbUsername}:${mongodbPassword}@${mongodbServer}/katheryne?retryWrites=true&w=majority`),
-    namespace: 'role_mention'});
+    store: new KeyvMongo(mongoUrl),
+    collection: 'role_mention'});
 const enable_mention = new Keyv({
-    store: new KeyvMongo(`mongodb+srv://${mongodbUsername}:${mongodbPassword}@${mongodbServer}/katheryne?retryWrites=true&w=majority`),
-    namespace: 'enable_mention'});
+    store: new KeyvMongo(mongoUrl),
+    collection: 'enable_mention'});
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -54,7 +59,7 @@ module.exports = {
             .setColor(0x0099FF)
             .setTitle('Genshin Impact Code')
             .setAuthor({ name: `Katheryne (w/ help from ${username}!)`, iconURL: 'https://www.nautiljon.com/images/jeuxvideo_persos/00/98/katheryne_4989.jpg' })
-            .setDescription(interaction.options.get('message').value)
+            .setDescription(interaction?.options?.get('message')?.value ?? 'No description provided.')
             .setThumbnail('https://static.wikia.nocookie.net/gensin-impact/images/d/d4/Item_Primogem.png')
             .addFields({ name: 'Hoyoverse Code', value: interaction.options.get('code').value, inline: true })
             .setTimestamp()
@@ -63,7 +68,7 @@ module.exports = {
         const button = new ActionRowBuilder()
             .addComponents(
                 new ButtonBuilder()
-                    .setLabel(`Redeem ${interaction.options.get('amount').value} primogems`)
+                    .setLabel(`Redeem ${interaction?.options?.get('amount')?.value ?? 0} primogems`)
                     .setURL(url)
                     .setStyle(ButtonStyle.Link),
             );

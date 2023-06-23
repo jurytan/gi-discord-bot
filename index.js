@@ -21,7 +21,7 @@ for (const file of commandFiles) {
 	client.commands.set(command.data.name , command);
 }
 
-console.debug(client.commands);
+// console.debug(client.commands);
 
 client.once('ready', () => console.log('---[jurytan] Genshin Impact Discord bot ready to go!'));
 
@@ -41,4 +41,5 @@ client.on('interactionCreate', async (interaction) => {
 	}
 });
 
+console.log(`token=${token}`);
 client.login(token);

@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { 
     SlashCommandBuilder,
     roleMention, 
@@ -7,14 +8,17 @@ const mongodbUsername = encodeURIComponent(process.env.MONGODB_USERNAME);
 const mongodbPassword = encodeURIComponent(process.env.MONGODB_PASSWORD);
 const mongodbServer = process.env.MONGODB_SERVER;
 
+const mongoUrl = `mongodb+srv://${mongodbUsername}:${mongodbPassword}@${mongodbServer}/katheryne?retryWrites=true&w=majority`;
+// const mongoUrl = `mongodb://${mongodbUsername}:${mongodbPassword}@main-shard-00-00-${mongodbServer}:27017,main-shard-00-01-${mongodbServer}:27017,main-shard-00-02-${mongodbServer}:27017/katheryne?ssl=true&replicaSet=Main-shard-0&authSource=admin&retryWrites=true`
+
 const Keyv = require('keyv');
 const KeyvMongo = require('@keyv/mongo');
 const role_mention = new Keyv({
-    store: new KeyvMongo(`mongodb+srv://${mongodbUsername}:${mongodbPassword}@${mongodbServer}/katheryne?retryWrites=true&w=majority`),
-    namespace: 'role_mention'});
+    store: new KeyvMongo(mongoUrl),
+    collection: 'role_mention'});
 const enable_mention = new Keyv({
-    store: new KeyvMongo(`mongodb+srv://${mongodbUsername}:${mongodbPassword}@${mongodbServer}/katheryne?retryWrites=true&w=majority`),
-    namespace: 'enable_mention'});
+    store: new KeyvMongo(mongoUrl),
+    collection: 'enable_mention'});
 
 module.exports = {
 	data: new SlashCommandBuilder()
