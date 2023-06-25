@@ -17,5 +17,6 @@ steps:
 - name: "gcr.io/cloud-builders/gcloud"
   args: ["app", "deploy"]
 timeout: "1600s"
+logsBucket: katheryne-bot-390917_cloudbuild_logs
 options:
-  logging: NONE
+  logging: GCS_ONLY
