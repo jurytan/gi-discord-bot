@@ -34,6 +34,9 @@ When you see `Successfully registered application commands.` and the command doe
 ### Docker
 More info coming soon
 
+## Roadmap
+- TBD
+
 ## FAQ
 
 **Q: Why doesn't any of the `genshin-role` commands work for me?**
