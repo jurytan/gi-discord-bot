@@ -41,5 +41,5 @@ client.on('interactionCreate', async (interaction) => {
 	}
 });
 
-console.log(`token=${token}`);
+// console.log(`token=${token}`);
 client.login(token);
