@@ -21,6 +21,8 @@ Not much! Just making a bot cause I was getting tired of manually doing stuff. A
 
 [![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run?git_repo=github.com/jurytan/katheryne-bot)
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjurytan%2Fkatheryne-bot)
+
 ### Local
 To start: 
 `npm start` or `node index.js`
