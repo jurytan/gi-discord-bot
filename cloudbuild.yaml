@@ -1,0 +1,22 @@
+steps:
+- name: node:18.14.0
+  entrypoint: npm
+  args: ["install"]
+- name: node:18.14.0
+  entrypoint: npm
+  args: ["run", "create-env"]
+  env:
+    - 'TOKEN=${_KATHERYNE_BOT_TOKEN}'
+    - 'CLIENT_ID=${_CLIENT_ID}'
+    - 'MONGODB_USERNAME=${_MONGODB_USERNAME}'
+    - 'MONGODB_PASSWORD=${_MONGODB_PASSWORD}'
+    - 'MONGODB_SERVER=${_MONGODB_SERVER}'
+- name: node:18.14.0
+  entrypoint: npm
+  args: ["run", "deploy-commands"]
+- name: node:18.14.0
+  entrypoint: npm
+  args: ["run", "start"]
+- name: "gcr.io/cloud-builders/gcloud"
+  args: ["app", "deploy"]
+timeout: "1600s"

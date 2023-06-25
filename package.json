@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "create-env": "printenv > .env",
     "deploy-commands": "node deploy-commands.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,7 +24,7 @@
     "@discordjs/rest": "^1.1.0",
     "@keyv/mongo": "^2.1.6",
     "discord.js": "^14.3.0",
-    "dotenv": "^16.0.2",
+    "dotenv": "^16.3.1",
     "keyv": "^4.5.0"
   },
   "engines": {
