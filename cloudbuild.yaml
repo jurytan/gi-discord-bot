@@ -18,6 +18,6 @@ steps:
   args: ["app", "deploy"]
 timeout: "1600s"
 serviceAccount: katheryne-bot-390917@appspot.gserviceaccount.com
-# logsBucket: katheryne-bot-390917_cloudbuild_logs
-# options:
-#   logging: GCS_ONLY
+logsBucket: katheryne-bot-390917_cloudbuild_logs
+options:
+  logging: GCS_ONLY
