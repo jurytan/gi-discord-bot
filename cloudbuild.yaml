@@ -17,6 +17,7 @@ steps:
 - name: "gcr.io/cloud-builders/gcloud"
   args: ["app", "deploy"]
 timeout: "1600s"
-logsBucket: katheryne-bot-390917_cloudbuild_logs
-options:
-  logging: GCS_ONLY
+serviceAccount: katheryne-bot-390917@appspot.gserviceaccount.com
+# logsBucket: katheryne-bot-390917_cloudbuild_logs
+# options:
+#   logging: GCS_ONLY

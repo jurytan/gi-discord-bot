@@ -3,4 +3,4 @@ env: flex
 runtime_config:
     operating_system: "ubuntu22"
     runtime_version: 18
-service_account: katheryne-bot-390917@appspot.gserviceaccount.com
+# service_account: katheryne-bot-390917@appspot.gserviceaccount.com
